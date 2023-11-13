@@ -1,25 +1,21 @@
-from unittest.mock import MagicMock
+import pytest
+from interest_calculator import calculate_interest, calculate_interest_rate
 
-def args_based_return(*args, **kwargs):
-    if args == (10, 10):
-        return 20
-    elif args == (20, 20):
-        return 40
-    else:
-        raise Exception("An exception occurred")
+def test_return_different_interest_rates_based_on_account_type(mocker):
+    def interest_rate_side_effect(account_type):
+        if account_type == 'saving':
+            return 0.02
+        elif account_type == 'current':
+            return 0.01
+        else:
+            return 0.005
 
-# Create a MagicMock with the side_effect set to args_based_return
-m = MagicMock(side_effect=args_based_return)
+    mock_interest_rate = mocker.patch('interest_calculator.calculate_interest_rate', side_effect=interest_rate_side_effect)
 
-try:
-    result1 = m(10, 10)
-except Exception as e:
-    result1 = e
+    result_saving = calculate_interest('saving', 1000)
+    result_current = calculate_interest('current', 1000)
+    result_default = calculate_interest('default', 1000)
 
-try:
-    result2 = m(40, 40)
-except Exception as e:
-    result2 = e
-
-print("Result 1:", result1) 
-print("Result 2:", result2) 
+    assert result_saving == 20.0
+    assert result_current == 10.0
+    assert result_default == 5.0
