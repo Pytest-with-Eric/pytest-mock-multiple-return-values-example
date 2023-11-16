@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_side_effect_exhaustion(mocker):
     # Create a MagicMock with side_effect as an iterable
     mock_iterable = mocker.MagicMock()
