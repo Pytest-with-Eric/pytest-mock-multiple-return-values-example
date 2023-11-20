@@ -1,5 +1,5 @@
-# pytest-mock-assert
-This repo contains the sample code for the article on "How to Elevate Your Testing Expertise with Multiple Returns using Python Mock"
+# Pytest Mock Return Multiple Values Example
+This repo contains the sample code for the article on [How To Return Multiple Values From Pytest Mock (Practical Guide)](https://pytest-with-eric.com/pytest-advanced/pytest-mock-multiple-return-values/)
 
 Handling multiple return values from a mock becomes essential in scenarios where a function you're testing expects multiple values from a dependency. This guide will walk you through the intricacies of achieving that with Python's Mock library.
 
